@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Página de prueba</title>
+  <link rel="stylesheet" href="dise%C3%B1o.css">
+</head>
+<body>
+  <header>
+    <h1>¡Funciona!</h1>
+    <p>Si estás viendo esto, tu HTML y tu CSS se están sirviendo bien desde GitHub.</p>
+  </header>
+
+  <main>
+    <p>Clicks: <span id="contador">0</span></p>
+    <button id="boton">Probar JavaScript</button>
+  </main>
+
+  <footer>
+    <p>Página de prueba · editá estos archivos y hacé commit para ver los cambios.</p>
+  </footer>
+
+  <script>
+    let clicks = 0;
+    document.getElementById("boton").addEventListener("click", () => {
+      clicks++;
+      document.getElementById("contador").textContent = clicks;
+    });
+  </script>
+</body>
+</html>
