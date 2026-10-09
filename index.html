@@ -9,24 +9,45 @@
 <body>
   <header>
     <h1>¡Funciona!</h1>
-    <p>Si estás viendo esto, tu HTML y tu CSS se están sirviendo bien desde GitHub.</p>
+    <p>Página de prueba conectada a Supabase.</p>
   </header>
 
   <main>
-    <p>Clicks: <span id="contador">0</span></p>
-    <button id="boton">Probar JavaScript</button>
+    <div class="fila">
+      <input id="entrada" type="text" placeholder="Escribí una tarea y apretá Enter">
+      <button id="btnAgregar">Agregar</button>
+    </div>
+    <div class="fila">
+      <button id="btnListar">Recargar lista</button>
+      <button id="btnVaciar">Borrar todas</button>
+    </div>
+    <div class="fila">
+      <button id="btnEscribir">Escribir en la base</button>
+      <button id="btnLeer">Leer de la base</button>
+    </div>
+    <pre id="salida">Acá aparece el resultado de leer/escribir.</pre>
+    <p id="estado"></p>
+    <ul id="lista"></ul>
   </main>
+
+  <section class="zona">
+    <h2>Escritura y lectura</h2>
+    <textarea id="mensajeTexto" rows="4" placeholder="Escribí un mensaje para guardar en la base"></textarea>
+    <div class="fila">
+      <button id="btnGuardarMensaje">Guardar</button>
+      <button id="btnLeerMensajes">Leer mensajes</button>
+    </div>
+    <p id="mensajeEstado"></p>
+    <div id="mensajesLectura"></div>
+  </section>
 
   <footer>
     <p>Página de prueba · editá estos archivos y hacé commit para ver los cambios.</p>
   </footer>
 
-  <script>
-    let clicks = 0;
-    document.getElementById("boton").addEventListener("click", () => {
-      clicks++;
-      document.getElementById("contador").textContent = clicks;
-    });
-  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+  <script src="conexion.js"></script>
+  <script src="operaciones.js"></script>
+  <script src="mensajes.js"></script>
 </body>
 </html>
