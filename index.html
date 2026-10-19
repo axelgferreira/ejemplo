@@ -1,53 +1,105 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-AR">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Página de prueba</title>
-  <link rel="stylesheet" href="dise%C3%B1o.css">
+  <title>Precios de la yerba mate</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,800&family=Literata:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>¡Funciona!</h1>
-    <p>Página de prueba conectada a Supabase.</p>
+  <header class="barra">
+    <a class="marca-sitio" href="index.html">Precios de yerba</a>
+    <nav aria-label="Principal">
+      <a href="index.html" aria-current="page">Inicio</a>
+      <a href="reportes.html">Reportes</a>
+    </nav>
   </header>
 
   <main>
-    <div class="fila">
-      <input id="entrada" type="text" placeholder="Escribí una tarea y apretá Enter">
-      <button id="btnAgregar">Agregar</button>
+    <section class="hero" aria-labelledby="t-promedio">
+      <div class="contenedor">
+        <h1 id="t-promedio">Precio promedio de la yerba mate</h1>
+        <p class="gran-numero" id="promedio-actual">—</p>
+        <p class="hero-nota" id="hero-nota">Promedio del último precio de venta de Rosamonte, CBSé, Taragüí y La Merced.</p>
+        <dl class="resumen">
+          <div>
+            <dt>Promedio del mes</dt>
+            <dd id="promedio-mes">—</dd>
+          </div>
+          <div>
+            <dt>Promedio del año</dt>
+            <dd id="promedio-anio">—</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <div class="contenedor">
+      <section class="bloque" aria-labelledby="t-tablero">
+        <h2 id="t-tablero">Precio de venta por marca</h2>
+        <div class="tabla-scroll">
+          <table class="tabla">
+            <thead>
+              <tr>
+                <th scope="col">Marca</th>
+                <th scope="col" class="num">Precio de venta</th>
+                <th scope="col" class="num">Cambio</th>
+                <th scope="col" class="num">Promedio del mes</th>
+                <th scope="col" class="num">Promedio del año</th>
+              </tr>
+            </thead>
+            <tbody id="tbody-marcas"></tbody>
+          </table>
+        </div>
+        <p class="nota">El cambio compara el último precio cargado con el anterior de la misma marca.</p>
+      </section>
+
+      <section class="bloque" aria-labelledby="t-form">
+        <h2 id="t-form">Actualizar un precio</h2>
+        <form id="form-precio">
+          <div class="campos">
+            <div class="campo">
+              <label for="marca">Marca</label>
+              <select id="marca" required></select>
+            </div>
+            <div class="campo">
+              <label for="precio">Precio de venta ($)</label>
+              <input id="precio" type="number" min="1" step="any" inputmode="decimal" required>
+            </div>
+            <div class="campo">
+              <label for="fecha">Fecha</label>
+              <input id="fecha" type="date" required>
+            </div>
+            <button class="boton" type="submit">Guardar precio</button>
+          </div>
+        </form>
+        <p class="estado" id="estado" role="status" aria-live="polite"></p>
+      </section>
+
+      <section class="bloque" aria-labelledby="t-hist">
+        <h2 id="t-hist">Últimas cargas</h2>
+        <ul class="historial" id="historial"></ul>
+      </section>
+
+      <section class="bloque" aria-labelledby="t-datos">
+        <h2 id="t-datos">Datos de prueba</h2>
+        <div class="acciones">
+          <button class="boton boton-sec" type="button" id="btn-ejemplo">Cargar un año de ejemplo</button>
+          <button class="boton boton-sec" type="button" id="btn-vaciar">Borrar todos los precios</button>
+        </div>
+        <p class="nota">Los precios de ejemplo son inventados: sirven para probar los promedios y los reportes.</p>
+      </section>
     </div>
-    <div class="fila">
-      <button id="btnListar">Recargar lista</button>
-      <button id="btnVaciar">Borrar todas</button>
-    </div>
-    <div class="fila">
-      <button id="btnEscribir">Escribir en la base</button>
-      <button id="btnLeer">Leer de la base</button>
-    </div>
-    <pre id="salida">Acá aparece el resultado de leer/escribir.</pre>
-    <p id="estado"></p>
-    <ul id="lista"></ul>
   </main>
 
-  <section class="zona">
-    <h2>Escritura y lectura</h2>
-    <textarea id="mensajeTexto" rows="4" placeholder="Escribí un mensaje para guardar en la base"></textarea>
-    <div class="fila">
-      <button id="btnGuardarMensaje">Guardar</button>
-      <button id="btnLeerMensajes">Leer mensajes</button>
-    </div>
-    <p id="mensajeEstado"></p>
-    <div id="mensajesLectura"></div>
-  </section>
-
-  <footer>
-    <p>Página de prueba · editá estos archivos y hacé commit para ver los cambios.</p>
+  <footer class="pie">
+    <p id="pie-modo"></p>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
   <script src="conexion.js"></script>
-  <script src="operaciones.js"></script>
-  <script src="mensajes.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>

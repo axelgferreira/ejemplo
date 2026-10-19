@@ -1,0 +1,377 @@
+:root {
+  --papel: #e9eddc;
+  --superficie: #f7f8ef;
+  --tinta: #1d2915;
+  --suave: #4d5b42;
+  --yerba: #35541f;
+  --cuia: #7a4b22;
+  --linea: #c5cdb0;
+  --borde-campo: #8e9a78;
+  --alerta: #9b2c20;
+  --titulos: "Bricolage Grotesque", "Trebuchet MS", system-ui, sans-serif;
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--papel);
+  color: var(--tinta);
+  font: 400 1.05rem/1.6 Literata, Georgia, serif;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--titulos);
+  line-height: 1.15;
+}
+
+a {
+  color: var(--yerba);
+}
+
+:focus-visible {
+  outline: 3px solid var(--cuia);
+  outline-offset: 2px;
+}
+
+.contenedor {
+  max-width: 62rem;
+  margin: 0 auto;
+}
+
+/* ---------- Barra superior ---------- */
+.barra {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  padding: 0.9rem clamp(1rem, 5vw, 3rem);
+  background: var(--superficie);
+  border-bottom: 1px solid var(--linea);
+}
+
+.barra .marca-sitio {
+  font: 800 1.2rem var(--titulos);
+  color: var(--yerba);
+  text-decoration: none;
+}
+
+.barra nav {
+  display: flex;
+  gap: 1.25rem;
+}
+
+.barra nav a {
+  color: var(--tinta);
+  text-decoration: none;
+  padding: 0.35rem 0;
+  border-bottom: 2px solid transparent;
+}
+
+.barra nav a[aria-current="page"] {
+  border-bottom-color: var(--cuia);
+  font-weight: 600;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  background: var(--yerba);
+  color: var(--papel);
+  padding: clamp(2rem, 6vw, 4.5rem) clamp(1rem, 5vw, 3rem);
+}
+
+.hero h1 {
+  margin: 0 0 0.5rem;
+  font-weight: 500;
+  font-size: 1.2rem;
+}
+
+.gran-numero {
+  margin: 0;
+  font: 800 clamp(3.5rem, 16vw, 9rem) / 0.95 var(--titulos);
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+
+.hero-nota {
+  margin: 0.75rem 0 0;
+  max-width: 40rem;
+}
+
+.resumen {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 3rem;
+  margin: 2rem 0 0;
+}
+
+.resumen dt {
+  font-size: 0.9rem;
+}
+
+.resumen dd {
+  margin: 0;
+  font: 800 1.75rem var(--titulos);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Bloques ---------- */
+main > .bloque {
+  padding: clamp(1.5rem, 4vw, 2.5rem) clamp(1rem, 5vw, 3rem) 0;
+}
+
+.bloque h2 {
+  margin: 0 0 1rem;
+  font-size: 1.6rem;
+}
+
+.nota {
+  color: var(--suave);
+  font-size: 0.95rem;
+  margin: 0.75rem 0 0;
+}
+
+.vacio {
+  background: var(--superficie);
+  border: 1px dashed var(--borde-campo);
+  padding: 0.9rem 1rem;
+  margin: 0 0 1rem;
+}
+
+/* ---------- Tablas ---------- */
+.tabla-scroll {
+  overflow-x: auto;
+  background: var(--superficie);
+  border: 1px solid var(--linea);
+}
+
+.tabla {
+  width: 100%;
+  min-width: 36rem;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+
+.tabla th,
+.tabla td {
+  padding: 0.8rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--linea);
+}
+
+.tabla thead th {
+  font: 600 0.95rem var(--titulos);
+  color: var(--suave);
+  white-space: nowrap;
+}
+
+.tabla .num {
+  text-align: right;
+}
+
+.tabla tbody th {
+  font-family: var(--titulos);
+  font-weight: 800;
+  font-size: 1.1rem;
+  padding-left: 1.3rem;
+  box-shadow: inset 7px 0 0 var(--c, var(--yerba));
+  white-space: nowrap;
+}
+
+.tabla tfoot th,
+.tabla tfoot td {
+  font-weight: 600;
+  background: var(--papel);
+  border-bottom: 0;
+}
+
+.precio-actual {
+  font: 800 1.35rem var(--titulos);
+}
+
+.sube {
+  color: var(--cuia);
+}
+
+.baja {
+  color: var(--yerba);
+}
+
+/* ---------- Formulario ---------- */
+.campos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: 1rem;
+  align-items: end;
+}
+
+.campo label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+.campo input,
+.campo select {
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.55rem 0.75rem;
+  font: inherit;
+  color: var(--tinta);
+  background: var(--superficie);
+  border: 1.5px solid var(--borde-campo);
+  border-radius: 4px;
+}
+
+.boton {
+  min-height: 2.75rem;
+  padding: 0.55rem 1.25rem;
+  font: 600 1rem var(--titulos);
+  color: var(--papel);
+  background: var(--yerba);
+  border: 1.5px solid var(--yerba);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.boton:hover {
+  background: #2a4418;
+}
+
+.boton-sec {
+  color: var(--tinta);
+  background: transparent;
+  border-color: var(--borde-campo);
+}
+
+.boton-sec:hover {
+  background: var(--superficie);
+}
+
+.acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.estado {
+  min-height: 1.6rem;
+  margin: 0.75rem 0 0;
+  font-weight: 600;
+  color: var(--yerba);
+}
+
+.estado.error {
+  color: var(--alerta);
+}
+
+/* ---------- Historial ---------- */
+.historial {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background: var(--superficie);
+  border: 1px solid var(--linea);
+}
+
+.historial li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  padding: 0.6rem 1rem;
+  border-bottom: 1px solid var(--linea);
+  font-variant-numeric: tabular-nums;
+}
+
+.historial li:last-child {
+  border-bottom: 0;
+}
+
+.historial .h-fecha {
+  color: var(--suave);
+  min-width: 6rem;
+}
+
+.historial .h-marca {
+  font-weight: 600;
+  flex: 1;
+}
+
+.historial button {
+  min-height: 2.25rem;
+  padding: 0.2rem 0.75rem;
+  font: inherit;
+  font-size: 0.9rem;
+  color: var(--alerta);
+  background: transparent;
+  border: 1px solid var(--alerta);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* ---------- Reportes ---------- */
+.controles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: end;
+}
+
+.controles .campo {
+  min-width: 10rem;
+}
+
+.grafico {
+  position: relative;
+  height: 20rem;
+  background: var(--superficie);
+  border: 1px solid var(--linea);
+  padding: 0.75rem;
+}
+
+.cifras {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: 1rem 2rem;
+  margin: 0;
+}
+
+.cifras dt {
+  color: var(--suave);
+  font-size: 0.95rem;
+}
+
+.cifras dd {
+  margin: 0;
+  font: 800 1.6rem var(--titulos);
+  font-variant-numeric: tabular-nums;
+}
+
+.cifras dd small {
+  display: block;
+  font: 400 0.95rem Literata, Georgia, serif;
+  color: var(--suave);
+}
+
+/* ---------- Pie ---------- */
+.pie {
+  margin-top: 3rem;
+  padding: 1.5rem clamp(1rem, 5vw, 3rem) 2.5rem;
+  border-top: 1px solid var(--linea);
+  color: var(--suave);
+  font-size: 0.95rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .boton,
+  .boton-sec {
+    transition: background-color 0.15s;
+  }
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reportes de precios · Yerba mate</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,800&family=Literata:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="barra">
+    <a class="marca-sitio" href="index.html">Precios de yerba</a>
+    <nav aria-label="Principal">
+      <a href="index.html">Inicio</a>
+      <a href="reportes.html" aria-current="page">Reportes</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="contenedor">
+      <section class="bloque" aria-labelledby="t-reportes">
+        <h2 id="t-reportes">Reportes de precios</h2>
+        <div class="controles">
+          <div class="campo">
+            <label for="anio">Año</label>
+            <select id="anio"></select>
+          </div>
+          <button class="boton boton-sec" type="button" id="btn-csv">Descargar CSV</button>
+        </div>
+        <p class="estado" id="estado" role="status" aria-live="polite"></p>
+        <p class="vacio" id="vacio" hidden></p>
+      </section>
+
+      <section class="bloque" aria-labelledby="t-resumen">
+        <h2 id="t-resumen">Resumen del año</h2>
+        <dl class="cifras" id="cifras"></dl>
+      </section>
+
+      <section class="bloque" aria-labelledby="t-grafico">
+        <h2 id="t-grafico">Promedio mensual por marca</h2>
+        <div class="grafico">
+          <canvas id="grafico" role="img" aria-label="Evolución del precio promedio mensual de cada marca"></canvas>
+        </div>
+      </section>
+
+      <section class="bloque" aria-labelledby="t-tabla">
+        <h2 id="t-tabla">Detalle por mes</h2>
+        <div class="tabla-scroll">
+          <table class="tabla">
+            <thead id="thead-reporte"></thead>
+            <tbody id="tbody-reporte"></tbody>
+            <tfoot id="tfoot-reporte"></tfoot>
+          </table>
+        </div>
+        <p class="nota">Cada mes muestra el promedio de los precios cargados en ese mes. El promedio anual es el promedio de todos los precios cargados en el año.</p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="pie">
+    <p id="pie-modo"></p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <script src="conexion.js"></script>
+  <script src="reportes.js"></script>
+</body>
+</html>
