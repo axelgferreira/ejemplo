@@ -226,10 +226,12 @@ function descargarCSV() {
 
 // ---------- Inicio ----------
 async function iniciar() {
-  $("#pie-modo").textContent =
-    Conexion.modo === "nube"
-      ? "Los precios se leen de la base de datos de Supabase."
-      : "Los precios se leen del navegador (localStorage), los mismos que cargaste en Inicio.";
+  const textosModo = {
+    nube: "Los precios se leen de la base de datos de Supabase.",
+    json: "Los precios se leen de precios.json, que actualiza el script de Python en GitHub Actions.",
+    local: "Los precios se leen del navegador (localStorage), los mismos que cargaste en Inicio.",
+  };
+  $("#pie-modo").textContent = textosModo[Conexion.modo];
 
   try {
     registros = await Conexion.listar();

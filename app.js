@@ -231,10 +231,18 @@ async function iniciar() {
   $("#btn-ejemplo").addEventListener("click", cargarEjemplo);
   $("#btn-vaciar").addEventListener("click", vaciarTodo);
 
-  $("#pie-modo").textContent =
-    Conexion.modo === "nube"
-      ? "Los precios se guardan en la base de datos de Supabase."
-      : "Los precios se guardan solo en este navegador (localStorage).";
+  const textosModo = {
+    nube: "Los precios se guardan en la base de datos de Supabase.",
+    json: "Los precios se actualizan solos desde precios.json (script de Python en GitHub Actions).",
+    local: "Los precios se guardan solo en este navegador (localStorage).",
+  };
+  $("#pie-modo").textContent = textosModo[Conexion.modo];
+
+  if (Conexion.modo === "json") {
+    // Con precios reales la página es solo lectura: se oculta la carga manual.
+    $("#t-form").closest("section").hidden = true;
+    $("#t-datos").closest("section").hidden = true;
+  }
 
   try {
     await recargar();

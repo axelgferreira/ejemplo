@@ -28,6 +28,9 @@ const CONFIG = {
   SUPABASE_URL: "", // ej: "https://xxxx.supabase.co"
   SUPABASE_KEY: "",
   TABLA: "precios",
+  // Precios reales: archivo que genera actualizar_precios.py (ej: "precios.json").
+  // Si lo completás, la página pasa a solo lectura y muestra esos precios.
+  JSON_URL: "",
 };
 
 const CLAVE_LOCAL = "yerba_precios_v1";
@@ -48,6 +51,10 @@ const formatoARS = (n) =>
 
 const Conexion = (() => {
   const nube = Boolean(CONFIG.SUPABASE_URL && CONFIG.SUPABASE_KEY);
+  const archivo = Boolean(CONFIG.JSON_URL) && !nube;
+  const soloLectura = () => {
+    throw new Error("Los precios vienen de precios.json y se actualizan solos.");
+  };
   const base = `${CONFIG.SUPABASE_URL}/rest/v1/${CONFIG.TABLA}`;
   const cabeceras = {
     apikey: CONFIG.SUPABASE_KEY,
@@ -99,6 +106,20 @@ const Conexion = (() => {
 
   // ---- API pública ----
   async function listar() {
+    if (archivo) {
+      const r = await fetch(`${CONFIG.JSON_URL}?v=${Date.now()}`);
+      if (r.status === 404) return [];
+      if (!r.ok) throw new Error(`No se pudo leer ${CONFIG.JSON_URL} (error ${r.status}).`);
+      const filas = await r.json();
+      return ordenar(
+        filas.map((f) => ({
+          id: `${f.marca}-${f.fecha}`,
+          marca: f.marca,
+          precio: Number(f.precio),
+          fecha: f.fecha,
+        }))
+      );
+    }
     if (nube) {
       const filas = await pedir(`${base}?select=*&order=fecha.asc,id.asc`);
       return filas.map((f) => ({ ...f, precio: Number(f.precio) }));
@@ -107,6 +128,7 @@ const Conexion = (() => {
   }
 
   async function agregarVarios(lista) {
+    if (archivo) soloLectura();
     const limpios = lista.map(validar);
     if (nube) {
       await pedir(base, {
@@ -122,6 +144,7 @@ const Conexion = (() => {
   const agregar = (registro) => agregarVarios([registro]);
 
   async function eliminar(id) {
+    if (archivo) soloLectura();
     if (nube) {
       await pedir(`${base}?id=eq.${encodeURIComponent(id)}`, { method: "DELETE" });
       return;
@@ -130,6 +153,7 @@ const Conexion = (() => {
   }
 
   async function vaciar() {
+    if (archivo) soloLectura();
     if (nube) {
       await pedir(`${base}?id=not.is.null`, { method: "DELETE" });
       return;
@@ -138,7 +162,7 @@ const Conexion = (() => {
   }
 
   return {
-    modo: nube ? "nube" : "local",
+    modo: nube ? "nube" : archivo ? "json" : "local",
     listar,
     agregar,
     agregarVarios,
