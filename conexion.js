@@ -30,7 +30,7 @@ const CONFIG = {
   TABLA: "precios",
   // Precios reales: archivo que genera actualizar_precios.py (ej: "precios.json").
   // Si lo completás, la página pasa a solo lectura y muestra esos precios.
-  JSON_URL: "",
+  JSON_URL: "precios.json",
 };
 
 const CLAVE_LOCAL = "yerba_precios_v1";
