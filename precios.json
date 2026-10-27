@@ -1,0 +1,26 @@
+[
+  {
+    "marca": "cbse",
+    "precio": 4845.0,
+    "fecha": "2026-10-27",
+    "producto": "Yerba mate Cbsé con hierbas serranas 1 kg."
+  },
+  {
+    "marca": "lamerced",
+    "precio": 6700.0,
+    "fecha": "2026-10-27",
+    "producto": "Yerba mate La Merced Campo Sur 1 kg"
+  },
+  {
+    "marca": "rosamonte",
+    "precio": 3999.0,
+    "fecha": "2026-10-27",
+    "producto": "Yerba mate Rosamonte suave plus 1 kg."
+  },
+  {
+    "marca": "taragui",
+    "precio": 7039.0,
+    "fecha": "2026-10-27",
+    "producto": "Yerba mate sin palo 4flex Taragüi 1 kg."
+  }
+]
